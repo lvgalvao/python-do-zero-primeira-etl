@@ -137,13 +137,89 @@ print(df_selecionado.head())
 ## **6️⃣ Agrupamento de Dados**
 No Excel, **Tabelas Dinâmicas (Pivot Table)** permitem resumir grandes volumes de dados. No Pandas, usamos `groupby()` para essa finalidade.
 
-🔹 **Agrupando transações por mês e somando o `total_de_compra`**:
+### **Explicação Detalhada do Código**
+
+O código abaixo faz duas operações principais:
+1. **Criação de uma nova coluna `mes_compra`** extraindo o mês e ano da coluna `data_compra`.
+2. **Agrupamento das transações por mês** e soma dos valores da coluna `total_de_compra`.
+
 ```python
 df["mes_compra"] = df["data_compra"].dt.to_period("M")
 
 df_agrupado = df.groupby("mes_compra")["total_de_compra"].sum().reset_index()
 print(df_agrupado)
 ```
+
+---
+
+## **1️⃣ Criando a Coluna `mes_compra`**
+```python
+df["mes_compra"] = df["data_compra"].dt.to_period("M")
+```
+
+### **O que acontece aqui?**
+- `df["data_compra"]` → É a coluna que contém as datas das transações.
+- `.dt.to_period("M")` → Converte a data completa (`YYYY-MM-DD`) para um **período de mês e ano** (`YYYY-MM`).
+- `df["mes_compra"]` → Criamos uma nova coluna contendo apenas o **mês e ano da compra**.
+
+### **Exemplo**
+Suponha que `data_compra` tenha os seguintes valores:
+
+| data_compra        | mes_compra |
+|--------------------|-----------|
+| 2025-01-26        | 2025-01   |
+| 2024-12-09        | 2024-12   |
+| 2024-09-26        | 2024-09   |
+
+Agora, temos uma **coluna que representa apenas o mês e ano da compra**, facilitando a agregação por períodos.
+
+---
+
+## **2️⃣ Agrupamento das Transações por Mês**
+```python
+df_agrupado = df.groupby("mes_compra")["total_de_compra"].sum().reset_index()
+```
+
+### **O que acontece aqui?**
+- `df.groupby("mes_compra")` → Agrupa os dados por mês.
+- `["total_de_compra"].sum()` → Soma os valores da coluna `total_de_compra` dentro de cada mês.
+- `.reset_index()` → Restaura o índice do DataFrame, garantindo que `mes_compra` continue como coluna normal.
+
+### **Exemplo**
+Se tivermos essas transações:
+
+| mes_compra | total_de_compra |
+|------------|----------------|
+| 2025-01    | 50.000         |
+| 2025-01    | 75.000         |
+| 2024-12    | 30.000         |
+| 2024-09    | 100.000        |
+| 2024-09    | 40.000         |
+
+Após o agrupamento (`groupby("mes_compra")`) e soma dos valores (`sum()`), o resultado será:
+
+| mes_compra | total_de_compra |
+|------------|----------------|
+| 2025-01    | 125.000        |
+| 2024-12    | 30.000         |
+| 2024-09    | 140.000        |
+
+Agora temos um **resumo mensal** das transações.
+
+---
+
+## **Resumo Final**
+📌 **Objetivo do código**:
+- Extrair **mês e ano** das datas de compra.
+- Agrupar os dados por mês.
+- Somar o **total de compras** realizadas em cada mês.
+
+📌 **Benefícios**:
+- Permite **análises temporais** de vendas.
+- Útil para criar **gráficos de tendência** no tempo.
+- Similar a **Tabelas Dinâmicas do Excel**, mas em código.
+
+Se precisar de mais explicações, me avise!
 
 ---
 
