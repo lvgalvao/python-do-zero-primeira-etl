@@ -136,6 +136,8 @@ a, b, c = 10, 20, 30
 print(a, b, c)  # Saída: 10 20 30
 ```
 
+## 6. Operadores de comparação
+
 Os **operadores de comparação** são usados para comparar dois valores e **retornam `True` ou `False`**, dependendo do resultado.
 
 ```python
@@ -147,20 +149,97 @@ print(10 == 10) # Igualdade → True
 print(10 != 5)  # Diferente de → True
 ```
 
-🔹 **Esses operadores são muito úteis para trabalhar com `if`, `else` e `while`.**  
-Por exemplo:
+## 7. Fluxo de controle
+
+### **📌 Fluxo de Controle: `if` e `else` em Detalhes**
+O **fluxo de controle** no Python permite que o código tome **decisões** com base em **condições**.  
+O **`if`** verifica se uma condição é verdadeira e executa um bloco de código, enquanto o **`else`** define um bloco alternativo para quando a condição for falsa.
+
+---
+
+## **1️⃣ Como Funciona o `if` e `else`?**
+A estrutura básica do **`if` e `else`** é:
+```python
+if condição:
+    # Bloco executado se a condição for verdadeira
+else:
+    # Bloco executado se a condição for falsa
+```
+Cada bloco de código dentro do `if` e `else` **precisa estar indentado corretamente**.
+
+---
+
+## **2️⃣ Exemplo Simples**
 ```python
 idade = 20
 
 if idade >= 18:
+    print("Você pode dirigir!")  # Esse código será executado porque a condição é verdadeira
+else:
+    print("Você não pode dirigir.")  # Esse código só executaria se a condição fosse falsa
+```
+✅ **Saída:** `Você pode dirigir!`  
+
+🔹 **Explicação do Código:**  
+- A variável `idade` tem o valor **20**.
+- O `if` verifica **se `idade` é maior ou igual a 18**.
+- Como 20 **é maior que 18**, a condição é verdadeira e **executa o bloco dentro do `if`**.
+- O `else` **é ignorado** porque sua execução só ocorre **se a condição for falsa**.
+
+---
+
+## **3️⃣ Identação no Python**
+A **identação** (espaço antes da linha de código) é fundamental no Python, pois define **quais linhas pertencem ao bloco do `if` ou do `else`**.
+
+🔹 **Exemplo Correto:**
+```python
+idade = 16
+
+if idade >= 18:
     print("Você pode dirigir!")
 else:
-    print("Você não pode dirigir.")
+    print("Você não pode dirigir.")  # A indentação está correta
 ```
-✅ **Saída:** `Você pode dirigir!`
 
+❌ **Exemplo Incorreto (Sem Identação):**
+```python
+idade = 16
 
-## 6.Listas
+if idade >= 18:
+print("Você pode dirigir!")  # ❌ Erro de identação
+else:
+print("Você não pode dirigir.")  # ❌ Erro de identação
+```
+🔴 **O Python retornará um erro de `IndentationError`!**
+
+✅ **Regra Geral:** Sempre use **4 espaços** ou **Tab** para identação.
+
+---
+
+## **4️⃣ `if`, `elif` e `else` (Múltiplas Condições)**
+Podemos adicionar condições intermediárias usando `elif` (**else if**).  
+
+🔹 **Exemplo de `if` com `elif` e `else`**
+```python
+nota = 85
+
+if nota >= 90:
+    print("Aprovado com excelência!")
+elif nota >= 70:
+    print("Aprovado!")
+else:
+    print("Reprovado!")
+```
+✅ **Saída:** `Aprovado!`
+
+🔹 **Explicação:**  
+- Se `nota` for **maior ou igual a 90**, imprime `"Aprovado com excelência!"`.
+- Se `nota` for **maior ou igual a 70**, mas **menor que 90**, imprime `"Aprovado!"`.
+- Se `nota` for **menor que 70**, imprime `"Reprovado!"`.
+
+---
+
+## 8.Listas
 
 Uma **lista** é uma estrutura de dados que armazena **múltiplos valores** em uma única variável. As listas são **ordenadas**, **mutáveis** (podemos modificar seus valores) e aceitam diferentes tipos de dados dentro dela.  
 
