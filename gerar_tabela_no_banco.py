@@ -21,15 +21,15 @@ end_date = datetime(2025, 2, 17)
 
 # Faixa de preços do Bitcoin de 2017 até 2025 (valores aproximados em BRL)
 btc_prices = {
-    2017: (3000, 65000),
-    2018: (12000, 55000),
-    2019: (10000, 45000),
-    2020: (25000, 60000),
-    2021: (30000, 350000),
-    2022: (60000, 220000),
-    2023: (90000, 250000),
-    2024: (120000, 300000),
-    2025: (150000, 350000)
+    2017: (6000, 130000),
+    2018: (24000, 110000),
+    2019: (20000, 90000),
+    2020: (50000, 120000),
+    2021: (60000, 700000),
+    2022: (120000, 440000),
+    2023: (180000, 500000),
+    2024: (600000, 700000),  # Valor fixo
+    2025: (500000, 600000)  # Valor fixo
 }
 
 # Conectar ao banco de dados PostgreSQL
@@ -44,6 +44,7 @@ cur = conn.cursor()
 
 # Criar tabela no banco de dados
 cur.execute('''
+    DROP TABLE IF EXISTS transacoes_clientes;
     CREATE TABLE IF NOT EXISTS transacoes_clientes (
         id SERIAL PRIMARY KEY,
         cliente VARCHAR(100),

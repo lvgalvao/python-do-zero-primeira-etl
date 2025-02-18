@@ -22,7 +22,7 @@ O **`requests`** é uma biblioteca do Python que permite **fazer requisições H
 import requests
 
 # URL da API para obter o preço atual do Bitcoin em USD
-url = "https://api.coindesk.com/v1/bpi/currentprice.json"
+url = "https://api.coinbase.com/v2/prices/spot"
 
 # Fazendo a requisição para a API
 response = requests.get(url)
@@ -31,7 +31,7 @@ response = requests.get(url)
 dados = response.json()
 
 # Extraindo o preço do Bitcoin em dólares
-preco_atual_btc = dados["bpi"]["USD"]["rate_float"]
+preco_atual_btc = float(dados['data']['amount'])
 
 print(f"Preço atual do Bitcoin: ${preco_atual_btc:.2f}")
 ```
@@ -39,7 +39,7 @@ print(f"Preço atual do Bitcoin: ${preco_atual_btc:.2f}")
 📌 **Explicação do código:**
 - `requests.get(url)`: Faz uma **requisição GET** para a API.
 - `response.json()`: Converte o **JSON** da resposta para um **dicionário Python**.
-- `dados["bpi"]["USD"]["rate_float"]`: Acessa a chave do JSON que contém o preço atual.
+- `float(dados['data']['amount']`: Acessa a chave do JSON que contém o preço atual.
 
 ---
 
@@ -109,10 +109,16 @@ import pandas as pd
 import requests
 
 # Obtendo o preço atual do Bitcoin da API
-url = "https://api.coindesk.com/v1/bpi/currentprice.json"
+url = "https://api.coinbase.com/v2/prices/spot"
+
+# Fazendo a requisição para a API
 response = requests.get(url)
+
+# Convertendo o JSON para um dicionário Python
 dados = response.json()
-preco_atual_btc = dados["bpi"]["USD"]["rate_float"]
+
+# Extraindo o preço do Bitcoin em dólares
+preco_atual_btc = float(dados['data']['amount'])
 
 # Criando a função para verificar lucro ou prejuízo
 def verificar_lucro(preco_compra):
@@ -121,12 +127,6 @@ def verificar_lucro(preco_compra):
     else:
         return "Prejuízo"
 
-# Criando o DataFrame com dados simulados
-dados = {
-    "cliente": ["Sherry Decker", "Gerald Hensley", "Timothy Duncan"],
-    "preco_btc": [202677.81, 233598.53, 156207.19],
-    "quantidade_btc": [0.75138, 0.34418, 0.46826]
-}
 
 df = pd.DataFrame(dados)
 
@@ -146,3 +146,44 @@ print(df)
 - **Aplicamos essa função ao DataFrame** com `apply()`.
 
 Esse processo é fundamental para **análises financeiras** e pode ser aplicado em **qualquer outro mercado**. Se precisar de mais detalhes ou adaptações, me avise!
+
+## 8. Mas o valor ta em dolar. O que fazer?
+
+```python
+import pandas as pd
+import requests
+
+# Obtendo o preço atual do Bitcoin em dólares da API Coinbase
+url_btc = "https://api.coinbase.com/v2/prices/spot?currency=USD"
+response_btc = requests.get(url_btc)
+dados_btc = response_btc.json()
+
+# Extraindo o preço do Bitcoin em dólares
+preco_atual_btc_dolar = float(dados_btc['data']['amount'])
+
+# Obtendo a cotação do dólar em relação ao real da AwesomeAPI
+url_dolar = "https://economia.awesomeapi.com.br/last/USD-BRL"
+response_dolar = requests.get(url_dolar)
+dados_dolar = response_dolar.json()
+
+# Extraindo a cotação do dólar
+cotacao_dolar_real = float(dados_dolar["USDBRL"]["bid"])
+
+# Convertendo o preço do Bitcoin para reais
+preco_atual_btc_real = preco_atual_btc_dolar * cotacao_dolar_real
+
+print(preco_atual_btc_real)
+
+# Criando a função para verificar lucro ou prejuízo
+def verificar_lucro(preco_compra):
+    if preco_compra < preco_atual_btc_real:
+        return "Lucro"
+    else:
+        return "Prejuízo"
+
+# Aplicando a função para categorizar cada transação
+df["resultado_operacao"] = df["preco_btc"].apply(verificar_lucro)
+
+# Exibindo o DataFrame atualizado
+print(df)
+```
