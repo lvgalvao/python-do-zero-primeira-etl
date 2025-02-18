@@ -35,8 +35,8 @@ Ele é uma **tabela estruturada** onde os valores são separados por **vírgulas
 import pandas as pd
 
 df_spark = spark.read.table("transacoes_clientes_csv")
-df_pandas = df.toPandas()
-print(df_pandas.head())
+df = df_spark.toPandas()
+print(df.head())
 ```
 
 ---
