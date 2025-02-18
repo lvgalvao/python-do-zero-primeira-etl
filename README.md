@@ -14,51 +14,101 @@ Este projeto tem como objetivo apresentar os primeiros comandos de Python.
 
 # Começando com o Python
 
-A primeira coisa que todos fazem quando estão começando com a programação
+---
 
 ## 1. Print - Exibir mensagens no console
 
+O comando **`print()`** é uma das primeiras funções que aprendemos ao começar a programar. Ele é usado para **exibir informações na tela**, tornando possível visualizar resultados e mensagens durante a execução do código.
+
+🔹 **Por que `print()` é importante?**
+- Ajuda a depurar o código (verificando valores intermediários).
+- Permite exibir mensagens para o usuário.
+- Facilita a interação com o console.
+
+🔹 **Exemplo de uso básico:**
 ```python
 print("Olá, Jornada de dados!")
 ```
-Um método é uma função projetada para executar uma ação específica. 
+✅ **Saída:**  
+```
+Olá, Jornada de dados!
+```
 
-Nesse caso, ele é um método embutido (built-in function) do Python que exibe informações.
+🔹 **O que está acontecendo?**
+- `print()` é uma **função embutida (built-in function)** no Python.
+- Ele recebe um **argumento**, que no caso é o texto `"Olá, Jornada de dados!"`, e exibe esse texto no console.
 
-Um argumento é um valor passado para um método ou função para modificar seu comportamento. 
+🔹 **O que é um argumento?**
+Um **argumento** é um valor passado para um método ou função para modificar seu comportamento.  
+No exemplo acima, `"Olá, Jornada de dados!"` é o **argumento passado para `print()`**, e ele define o que será exibido na tela.
+
+---
 
 ## 2. Operadores
 
-Os **operadores matemáticos** são usados para realizar cálculos em números.
+Os **operadores matemáticos** são usados para **realizar cálculos** e operações matemáticas no Python. Eles são essenciais para trabalhar com **números**, seja em **cálculos simples**, **análises de dados** ou **operações em bancos de dados**.
 
+🔹 **Tipos de operadores matemáticos:**
 ```python
 print(1 + 2)  # Soma → Retorna 3
 print(4 - 3)  # Subtração → Retorna 1
 print(2 * 2)  # Multiplicação → Retorna 4
 print(4 / 2)  # Divisão → Retorna 2.0
-print(5 // 2) # Divisão inteira → Retorna 2
+print(5 // 2) # Divisão inteira → Retorna 2 (descarta o decimal)
 print(5 % 2)  # Módulo → Retorna 1 (resto da divisão)
 print(2 ** 3) # Exponenciação → Retorna 8 (2 elevado a 3)
 ```
-Os operadores matemáticos são usados para realizar cálculos em números
 
---- 
+🔹 **Por que operadores são importantes?**
+- Permitem fazer cálculos simples e complexos.
+- São usados em **análises estatísticas** e **operações com DataFrames** no Pandas.
+- Facilitam a manipulação de dados numéricos.
 
-## 3. Type - Verificar o tipo de dado de um objeto
+📌 **Exemplo de uso no mundo real:**  
 ```python
-print(type(1 + 2))  # Saída: <class 'list'>
+preco = 100
+desconto = 10
+preco_final = preco - desconto  # Aplicando desconto
+print(preco_final)  # Saída: 90
 ```
 
-O método type() é uma função embutida (built-in function) do Python que retorna o tipo de dado de um objeto.
+---
 
-Ajuda a identificar se um dado é inteiro (int), ponto flutuante (float), string (str), lista (list), entre outros.
+## 3️ Type - Verificar o tipo de dado
+O Python **trabalha com diferentes tipos de dados**, e a função `type()` nos permite verificar o tipo de qualquer objeto.
 
-## 4. String
+🔹 **Exemplo de uso:**
+```python
+print(type(10))       # <class 'int'> (Número inteiro)
+print(type(3.14))     # <class 'float'> (Número decimal)
+print(type("Python")) # <class 'str'> (Texto)
+print(type([1, 2, 3]))# <class 'list'> (Lista)
+```
 
-No primeiro exemplo, o valor passado para print() é uma string:
+🔹 **Por que `type()` é útil?**
+- Permite **entender melhor os dados** com os quais estamos trabalhando.
+- Evita **erros de tipo**, como tentar somar um número com um texto.
+- Muito usado em **análises de dados**, onde precisamos saber o tipo das colunas em um DataFrame.
 
-Uma string (str) é uma sequência de caracteres usada para representar textos em Python. Sempre está entre aspas simples (') ou aspas duplas (").
+📌 **Exemplo de uso real:**  
+```python
+dados = [100, "Jornada", 3.14]
+for item in dados:
+    print(f"Valor: {item} | Tipo: {type(item)}")
+```
+✅ **Saída:**  
+```
+Valor: 100 | Tipo: <class 'int'>
+Valor: Jornada | Tipo: <class 'str'>
+Valor: 3.14 | Tipo: <class 'float'>
+```
 
+---
+
+## 4. Strings - Trabalhando com Textos
+No Python, um **texto** é representado pelo tipo de dado **`str` (string)**. Strings são **sequências de caracteres**, sempre **entre aspas simples (`'`) ou duplas (`"`).**
+
+🔹 **Exemplo de strings:**
 ```python
 # String com aspas duplas
 print("Olá, Jornada de dados!")
@@ -70,13 +120,37 @@ print('Python é incrível!')
 print("Olá" + ", " + "Jornada de dados!")  # Saída: Olá, Jornada de dados!
 ```
 
-### Erro ao concatenar str + int
-
-Strings não podem ser concatenadas diretamente com números (int). Se tentarmos, ocorre um erro:
-
+🔹 **Manipulação de strings:**  
 ```python
-print("Minha idade é " + 25)
+mensagem = "Python é incrível!"
+print(mensagem.upper())  # Converte para maiúsculas
+print(mensagem.lower())  # Converte para minúsculas
+print(len(mensagem))     # Retorna o tamanho da string
+print(mensagem.replace("Python", "Data Science"))  # Substitui palavras
 ```
+
+✅ **Saída:**  
+```
+PYTHON É INCRÍVEL!
+python é incrível!
+19
+Data Science é incrível!
+```
+
+### **🚨 Erro ao concatenar `str` + `int`**
+Strings **não podem ser concatenadas** diretamente com números (int). Se tentarmos, ocorre um erro:
+```python
+print("Minha idade é " + 25)  # ❌ Erro
+```
+🔴 **Erro:** `TypeError: can only concatenate str (not "int") to str`
+
+📌 **Como corrigir?** Convertendo o número para string usando `str()`
+```python
+print("Minha idade é " + str(25))  # ✅ Correto
+```
+✅ **Saída:** `Minha idade é 25`
+
+---
 
 ## 5. Variáveis
 
