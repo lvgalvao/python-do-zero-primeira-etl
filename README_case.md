@@ -152,7 +152,7 @@ print(df_agrupado)
 
 ---
 
-## **1️⃣ Criando a Coluna `mes_compra`**
+## **7. Criando a Coluna `mes_compra`**
 ```python
 df["mes_compra"] = df["data_compra"].dt.to_period("M")
 ```
@@ -175,7 +175,7 @@ Agora, temos uma **coluna que representa apenas o mês e ano da compra**, facili
 
 ---
 
-## **2️⃣ Agrupamento das Transações por Mês**
+## **8. Agrupamento das Transações por Mês**
 ```python
 df_agrupado = df.groupby("mes_compra")["total_de_compra"].sum().reset_index()
 ```
@@ -223,7 +223,7 @@ Se precisar de mais explicações, me avise!
 
 ---
 
-## **7️⃣ Aplicando Condições (If no Pandas)**
+## **9. Aplicando Condições (If no Pandas)**
 No Excel, podemos criar **colunas condicionais** usando `SE()`. No Pandas, usamos `apply()`.
 
 🔹 **Criando uma coluna que indica se a compra foi acima de R$ 200.000**:
@@ -234,7 +234,7 @@ print(df[["cliente", "total_de_compra", "alta_compra"]].head())
 
 ---
 
-## **8️⃣ Estatísticas Básicas**
+## **10. Estatísticas Básicas**
 Podemos gerar estatísticas rápidas sobre os dados.
 
 🔹 **Verificando estatísticas descritivas**:
@@ -249,24 +249,8 @@ print(df.isnull().sum())  # Conta quantos valores nulos existem por coluna
 
 ---
 
-## **9️⃣ Salvando e Carregando Arquivos**
-🔹 **Salvando o DataFrame em CSV**:
-```python
-df.to_csv("transacoes_processadas.csv", index=False)
-```
-
-🔹 **Lendo um CSV salvo anteriormente**:
-```python
-df_lido = pd.read_csv("transacoes_processadas.csv")
-print(df_lido.head())
-```
-
----
-
 ## **📌 Conclusão**
 - Aprendemos **como criar, manipular e analisar dados no Pandas**.
 - Exploramos **filtragem, ordenação, agregação e estatísticas**.
 - Fizemos **comparação com operações comuns no Excel**.
 - Criamos **novas colunas e aplicamos condições**.
-
-O Pandas é uma ferramenta poderosa para **engenharia e ciência de
