@@ -254,3 +254,111 @@ print(df.isnull().sum())  # Conta quantos valores nulos existem por coluna
 - Exploramos **filtragem, ordenação, agregação e estatísticas**.
 - Fizemos **comparação com operações comuns no Excel**.
 - Criamos **novas colunas e aplicamos condições**.
+
+# **Lendo Dados de Bancos de Dados com Pandas**
+
+O Pandas não se limita apenas a **arquivos CSV** ou **tabelas estáticas**. Ele pode **ler diretamente de bancos de dados relacionais**, permitindo análises de dados mais poderosas e conectadas a sistemas reais.
+
+## **1️⃣ O Pandas Pode Ler Mais do Que Apenas CSV**
+Além do tradicional `pd.read_csv()`, o Pandas suporta diversas fontes de dados, incluindo:
+- **Bancos de dados SQL** (PostgreSQL, MySQL, SQLite, etc.)
+- **APIs Web** (JSON, XML)
+- **Arquivos Excel** (`.xlsx`)
+- **Arquivos Parquet**, **Feather**, **HDF5**, entre outros.
+
+Isso significa que podemos **extrair, transformar e analisar dados diretamente de uma base de dados sem precisar exportar arquivos manualmente**.
+
+---
+
+## **2️⃣ Lendo Dados de um Banco PostgreSQL com Pandas**
+Abaixo está um exemplo de **como conectar-se a um banco de dados PostgreSQL**, executar uma **consulta SQL** e carregar os dados diretamente em um **DataFrame Pandas**.
+
+### **📌 Código Completo**
+```python
+import pandas as pd
+import psycopg2
+
+# Conectar ao banco de dados PostgreSQL
+conn = psycopg2.connect(
+    dbname="transacoes_pbpt",
+    user="transacoes_pbpt_user",
+    password="<minha-senha>",
+    host="<meu-host>",
+    port="5432"
+)
+
+# Consulta SQL
+query = """
+    SELECT cliente, data_compra, preco_btc, quantidade_btc 
+    FROM transacoes_clientes
+    ORDER BY data_compra DESC
+"""
+
+# Usando Pandas para ler diretamente do banco de dados
+df_transacoes = pd.read_sql(query, conn)
+
+# Exibir as primeiras linhas do DataFrame
+print(df_transacoes.head())
+
+# Fechar conexão com o banco de dados
+conn.close()
+
+print("Consulta realizada com sucesso!")
+```
+
+---
+
+## **3️⃣ Explicação do Código**
+### **🔹 Conexão com o Banco de Dados**
+```python
+import psycopg2
+conn = psycopg2.connect(
+    dbname="transacoes_pbpt",
+    user="transacoes_pbpt_user",
+    password="<minha-senha>",
+    host="<meu-host>",
+    port="5432"
+)
+```
+- Utilizamos a biblioteca **`psycopg2`** para conectar ao banco **PostgreSQL**.
+- Passamos as credenciais do banco: **nome do banco, usuário, senha, host e porta**.
+- Criamos um **objeto de conexão (`conn`)**, que nos permite executar consultas.
+
+### **🔹 Escrevendo a Consulta SQL**
+```python
+query = """
+    SELECT cliente, data_compra, preco_btc, quantidade_btc 
+    FROM transacoes_clientes
+    ORDER BY data_compra DESC
+"""
+```
+- Essa **query SQL** busca todas as colunas **`cliente, data_compra, preco_btc, quantidade_btc`** da tabela **`transacoes_clientes`**.
+- A cláusula **`ORDER BY data_compra DESC`** ordena os dados da compra **mais recente para a mais antiga**.
+
+### **🔹 Lendo os Dados com Pandas**
+```python
+df_transacoes = pd.read_sql(query, conn)
+```
+- O Pandas **executa a query diretamente** e carrega o resultado em um **DataFrame**.
+- **`pd.read_sql()`** permite manipular dados SQL sem precisar usar cursores ou laços `for`.
+
+### **🔹 Exibindo e Fechando a Conexão**
+```python
+print(df_transacoes.head())  # Exibe as primeiras linhas do DataFrame
+conn.close()  # Fecha a conexão com o banco de dados
+```
+- `df.head()` exibe os **primeiros registros** carregados.
+- `conn.close()` encerra a conexão **evitando sobrecarga no banco**.
+
+---
+
+## **4️⃣ Benefícios de Ler Bancos de Dados com Pandas**
+- **Evita processos manuais** de exportação/importação de arquivos.
+- **Conexão direta com o banco**, permitindo trabalhar com dados **em tempo real**.
+- **Facilidade na análise** e manipulação dos dados com os métodos do Pandas.
+- **Garante a integridade dos dados**, sem precisar salvar arquivos intermediários.
+
+---
+
+## **5️⃣ Outros Tipos de Bancos Suportados pelo Pandas**
+O Pandas pode se conectar a vários **bancos de dados**, além do PostgreSQL. 
