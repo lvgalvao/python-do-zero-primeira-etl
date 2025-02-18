@@ -64,7 +64,31 @@ print(2 ** 3) # Exponenciação → Retorna 8 (2 elevado a 3)
 - São usados em **análises estatísticas** e **operações com DataFrames** no Pandas.
 - Facilitam a manipulação de dados numéricos.
 
+---
+
+## 3. Variáveis
+
+### **📌 Variáveis no Python**  
+
+Uma **variável** é um **espaço na memória** onde armazenamos valores que podem ser usados posteriormente. No Python, não precisamos declarar o tipo da variável explicitamente – o interpretador identifica automaticamente.  
+
+---
+
+### **📌 Como criar variáveis**  
+```python
+# Criando variáveis
+nome = "Jornada de Dados"  # String
+idade = 25  # Inteiro
+altura = 1.75  # Float
+
+# Exibindo valores
+print(nome)  # Saída: Jornada de Dados
+print(idade)  # Saída: 25
+print(altura)  # Saída: 1.75
+```
+
 📌 **Exemplo de uso no mundo real:**  
+
 ```python
 preco = 100
 desconto = 10
@@ -72,9 +96,8 @@ preco_final = preco - desconto  # Aplicando desconto
 print(preco_final)  # Saída: 90
 ```
 
----
+## 4 Type - Verificar o tipo de dado
 
-## 3️ Type - Verificar o tipo de dado
 O Python **trabalha com diferentes tipos de dados**, e a função `type()` nos permite verificar o tipo de qualquer objeto.
 
 🔹 **Exemplo de uso:**
@@ -82,30 +105,15 @@ O Python **trabalha com diferentes tipos de dados**, e a função `type()` nos p
 print(type(10))       # <class 'int'> (Número inteiro)
 print(type(3.14))     # <class 'float'> (Número decimal)
 print(type("Python")) # <class 'str'> (Texto)
-print(type([1, 2, 3]))# <class 'list'> (Lista)
 ```
 
 🔹 **Por que `type()` é útil?**
 - Permite **entender melhor os dados** com os quais estamos trabalhando.
 - Evita **erros de tipo**, como tentar somar um número com um texto.
-- Muito usado em **análises de dados**, onde precisamos saber o tipo das colunas em um DataFrame.
-
-📌 **Exemplo de uso real:**  
-```python
-dados = [100, "Jornada", 3.14]
-for item in dados:
-    print(f"Valor: {item} | Tipo: {type(item)}")
-```
-✅ **Saída:**  
-```
-Valor: 100 | Tipo: <class 'int'>
-Valor: Jornada | Tipo: <class 'str'>
-Valor: 3.14 | Tipo: <class 'float'>
-```
 
 ---
 
-## 4. Strings - Trabalhando com Textos
+## 5. Strings - Trabalhando com Textos
 No Python, um **texto** é representado pelo tipo de dado **`str` (string)**. Strings são **sequências de caracteres**, sempre **entre aspas simples (`'`) ou duplas (`"`).**
 
 🔹 **Exemplo de strings:**
@@ -129,14 +137,6 @@ print(len(mensagem))     # Retorna o tamanho da string
 print(mensagem.replace("Python", "Data Science"))  # Substitui palavras
 ```
 
-✅ **Saída:**  
-```
-PYTHON É INCRÍVEL!
-python é incrível!
-19
-Data Science é incrível!
-```
-
 ### **🚨 Erro ao concatenar `str` + `int`**
 Strings **não podem ser concatenadas** diretamente com números (int). Se tentarmos, ocorre um erro:
 ```python
@@ -151,64 +151,6 @@ print("Minha idade é " + str(25))  # ✅ Correto
 ✅ **Saída:** `Minha idade é 25`
 
 ---
-
-## 5. Variáveis
-
-### **📌 Variáveis no Python**  
-
-Uma **variável** é um **espaço na memória** onde armazenamos valores que podem ser usados posteriormente. No Python, não precisamos declarar o tipo da variável explicitamente – o interpretador identifica automaticamente.  
-
----
-
-### **📌 Como criar variáveis**  
-```python
-# Criando variáveis
-nome = "Jornada de Dados"  # String
-idade = 25  # Inteiro
-altura = 1.75  # Float
-aprendendo_python = True  # Booleano
-
-# Exibindo valores
-print(nome)  # Saída: Jornada de Dados
-print(idade)  # Saída: 25
-print(altura)  # Saída: 1.75
-print(aprendendo_python)  # Saída: True
-```
-
----
-
-### **📌 Regras para Nomear Variáveis**  
-✅ **Válido:**  
-- Podem conter **letras, números e _ (underscore)**  
-- Devem **começar com uma letra ou _**, nunca com número  
-- Python **diferencia maiúsculas de minúsculas**  
-
-❌ **Inválido:**  
-```python
-2idade = 30  # ❌ Erro: Não pode começar com número
-nome-completo = "Maria"  # ❌ Erro: Hífen não é permitido
-```
-
-✅ **Correções:**  
-```python
-_idade = 30  # Correto
-nome_completo = "Maria"  # Correto
-```
-
----
-
-### **📌 Atribuição de Valores**  
-Podemos **atualizar valores** ou atribuir **múltiplos valores** de uma vez:  
-
-```python
-# Atualizando valores
-idade = 26  
-print(idade)  # Saída: 26
-
-# Múltiplas atribuições
-a, b, c = 10, 20, 30  
-print(a, b, c)  # Saída: 10 20 30
-```
 
 ## 6. Operadores de comparação
 
@@ -231,7 +173,7 @@ O **`if`** verifica se uma condição é verdadeira e executa um bloco de códig
 
 ---
 
-## **1️⃣ Como Funciona o `if` e `else`?**
+### **1️⃣ Como Funciona o `if` e `else`?**
 A estrutura básica do **`if` e `else`** é:
 ```python
 if condição:
@@ -243,7 +185,7 @@ Cada bloco de código dentro do `if` e `else` **precisa estar indentado corretam
 
 ---
 
-## **2️⃣ Exemplo Simples**
+### **2️⃣ Exemplo Simples**
 ```python
 idade = 20
 
@@ -262,7 +204,7 @@ else:
 
 ---
 
-## **3️⃣ Identação no Python**
+### **3️⃣ Identação no Python**
 A **identação** (espaço antes da linha de código) é fundamental no Python, pois define **quais linhas pertencem ao bloco do `if` ou do `else`**.
 
 🔹 **Exemplo Correto:**
@@ -290,7 +232,7 @@ print("Você não pode dirigir.")  # ❌ Erro de identação
 
 ---
 
-## **4️⃣ `if`, `elif` e `else` (Múltiplas Condições)**
+### **4️⃣ `if`, `elif` e `else` (Múltiplas Condições)**
 Podemos adicionar condições intermediárias usando `elif` (**else if**).  
 
 🔹 **Exemplo de `if` com `elif` e `else`**
@@ -399,152 +341,3 @@ A função `len()` retorna a quantidade de itens dentro de uma lista:
 data = [10, 20, 30, 40]
 print(len(data))  # Saída: 4
 ```
-
----
-
-💡 **Conclusão:**  
-As listas são **versáteis** e muito utilizadas no Python para armazenar e manipular coleções de dados. Elas podem ser aplicadas desde **listas de nomes** até **estruturas complexas**, como **listas de registros de clientes** em um banco de dados. 🚀
-
-[Planilha](https://docs.google.com/spreadsheets/d/1kGcrAxwXom6jp6lWjbYIMTbs-qkqg9kBq0dewv5Mruc/edit?usp=sharing)
-
-# Métodos do Pandas
-
-## 7. Dataframe
-
-Ótimo! Vamos converter o **DataFrame do Spark para Pandas** e realizar todas as operações diretamente com **Pandas**.  
-
----
-
-### **📌 Convertendo Spark DataFrame para Pandas**
-Antes de fazer qualquer manipulação no Pandas, precisamos **converter o DataFrame do Spark para um DataFrame do Pandas**.
-
-```python
-df_pandas = df.toPandas()
-print(df_pandas.head())
-```
-🔹 **Isso transforma o DataFrame Spark em um DataFrame Pandas**, permitindo o uso dos métodos nativos do Pandas.
-
----
-
-### **📌 Verificando o Esquema da Tabela no Pandas**
-```python
-print(df_pandas.dtypes)
-```
-🔹 **Mostra os tipos de dados de cada coluna.**
-
----
-
-### **📌 Contar a Quantidade de Registros**
-```python
-print(f"Número total de transações: {df_pandas.shape[0]}")
-```
-🔹 **`shape[0]` retorna o número total de linhas**.
-
----
-
-### **📌 Filtrando Transações com Bitcoin Acima de 100.000 BRL**
-```python
-df_filtrado = df_pandas[df_pandas["preco_btc"] > 100000]
-print(df_filtrado.head())
-```
-
-## 8. Comparação e controle de fluxo
-
-A estrutura **`if`** é uma das principais formas de controle de fluxo no Python. Ela permite que o código tome **decisões baseadas em condições**.
-
----
-
-### **📌 Como funciona `if` e `else`?**
-No Python, a estrutura do **`if` e `else`** segue este formato:
-
-```python
-if condição:
-    # Código executado se a condição for verdadeira
-else:
-    # Código executado se a condição for falsa
-```
-
-### **📌 Exemplo Simples**
-```python
-idade = 20
-
-if idade >= 18:
-    print("Você é maior de idade!")
-else:
-    print("Você é menor de idade!")
-```
-✅ **Saída:** `Você é maior de idade!`
-
----
-
-### **📌 `if`, `elif` e `else`**
-Podemos ter **múltiplas condições** usando `elif` (**else if**).
-
-```python
-nota = 85
-
-if nota >= 90:
-    print("Aprovado com excelência!")
-elif nota >= 70:
-    print("Aprovado!")
-else:
-    print("Reprovado!")
-```
-✅ **Saída:** `Aprovado!`
-
----
-
-## **2️⃣ Explicando a Função `verificar_ganho_perda()`**
-Agora que entendemos `if` e `else`, vamos aplicá-los dentro de uma **função**.
-
-```python
-def verificar_ganho_perda(preco):
-    if preco < preco_atual:
-        return "Ganhou"
-    else:
-        return "Perdeu"
-```
-
-🔹 **Como essa função funciona?**  
-1. **Ela recebe um valor (`preco`)**, que representa o preço do Bitcoin.  
-2. **Compara esse valor com `preco_atual`** (definido previamente).  
-3. **Se `preco` for menor que `preco_atual`**, a função retorna `"Ganhou"`.  
-4. **Se `preco` for maior ou igual a `preco_atual`**, retorna `"Perdeu"`.  
-
-🔹 **Exemplo de uso da função:**
-```python
-preco_atual = 120000  # Simulando um preço atual do Bitcoin
-
-print(verificar_ganho_perda(110000))  # Saída: "Ganhou"
-print(verificar_ganho_perda(130000))  # Saída: "Perdeu"
-```
-
----
-
-## **3️⃣ Aplicação da Função no DataFrame**
-Agora aplicamos essa função ao **DataFrame Pandas**, para que cada linha receba um valor `"Ganhou"` ou `"Perdeu"` na nova coluna **`ganhou_perdeu`**.
-
-```python
-df_pandas["ganhou_perdeu"] = df_pandas["preco_btc"].apply(verificar_ganho_perda)
-```
-
-🔹 **O que acontece aqui?**  
-- O método `.apply()` **chama a função para cada valor** da coluna `preco_btc`.
-- O resultado é armazenado na nova coluna `"ganhou_perdeu"`.
-
-🔹 **Resultado final do DataFrame:**
-| preco_btc | quantidade_btc | ganhou_perdeu |
-|-----------|---------------|---------------|
-| 90000     | 0.5           | Ganhou        |
-| 110000    | 0.2           | Ganhou        |
-| 130000    | 0.1           | Perdeu        |
-| 80000     | 0.8           | Ganhou        |
-| 125000    | 0.3           | Perdeu        |
-
----
-
-## **📌 Conclusão**
-🔥 Agora entendemos **`if` e `else`**, aplicamos esses conceitos dentro de uma **função**, e usamos essa função para **manipular um DataFrame no Pandas**.  
-🚀 Essa lógica pode ser aplicada em **qualquer análise de dados** onde precisamos tomar decisões com base em valores!  
-
-Se precisar de mais ajustes, me avise! 🔥
