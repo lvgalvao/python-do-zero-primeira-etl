@@ -135,6 +135,30 @@ df_filtrado = df[df["quantidade_btc"] > 1]
 print(df_filtrado.head())  # Exibe as primeiras linhas do DataFrame filtrado
 ```
 
+
+Para contar quantos registros atendem à condição **`quantidade_btc > 1`**, você pode usar o método **`.shape[0]`** ou **`.count()`**:
+
+---
+
+### **📌 Usando `.shape[0]` (Mais comum)**
+```python
+quantidade_transacoes = df[df["quantidade_btc"] > 1].shape[0]
+print(f"Número de transações com mais de 1 BTC: {quantidade_transacoes}")
+```
+✅ Retorna o **número total de linhas** onde a condição é verdadeira.
+
+---
+
+### **📌 Usando `.count()`**
+```python
+quantidade_transacoes = df[df["quantidade_btc"] > 1]["quantidade_btc"].count()
+print(f"Número de transações com mais de 1 BTC: {quantidade_transacoes}")
+```
+✅ Conta apenas os valores **não nulos** na coluna `quantidade_btc`.
+
+Ambos os métodos funcionam, mas **`.shape[0]` é mais genérico e recomendado!** 🚀
+
+
 ---
 
 ### **📌 2️⃣ Ordenação de Dados**
